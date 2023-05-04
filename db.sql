@@ -1,7 +1,6 @@
 -- Create a database called "PERN" and run the following commands:
 CREATE DATABASE YelpClone;
 
-
 CREATE TABLE restaurants(
   id BIGSERIAL NOT NULL PRIMARY KEY,
   name VARCHAR(50) NOT NULL,

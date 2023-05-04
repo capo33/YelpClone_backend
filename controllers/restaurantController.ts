@@ -172,6 +172,30 @@ const addReview = async (req: Request, res: Response) => {
   }
 };
 
+//@desc Delete a review
+//@route DELETE /api/v1/restaurants/:id/deleteReview
+//@access Public
+const deleteReview = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    await db.query("DELETE FROM reviews WHERE id = $1", [id]);
+    res.status(204).json({
+      success: true,
+      message: "Review deleted",
+      data: null,
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(error.message);
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+};
+
+
 export {
   getRestaurants,
   getRestaurant,
@@ -179,4 +203,5 @@ export {
   updateRestaurant,
   deleteRestaurant,
   addReview,
+  deleteReview,
 };
